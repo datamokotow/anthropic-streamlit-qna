@@ -3,19 +3,18 @@ import anthropic
 
 with st.sidebar:
     anthropic_api_key = st.text_input('Anthropic API Key',key='file_qa_api_key')
-    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/File_Q%26A.py)"
-    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
+    "[View the source code](https://github.com/datamokotow/anthropic-streamlit-qna/tree/main)"
 
-st.title("📝 File Q&A with Anthropic")
+st.title("📝 File QnA with Anthropic")
 uploaded_file = st.file_uploader("Upload an article", type="txt")
 question = st.text_input(
-    "Ask something about the article",
-    placeholder="Can you give me a short summary?",
+    "Ask something about the content",
+    placeholder="Please provide a short summary?",
     disabled=not uploaded_file,
 )
 
 if uploaded_file and question and not anthropic_api_key:
-    st.info("Please add your Anthropic API key to continue.")
+    st.info("Please add your Anthropic API key.")
     
 if uploaded_file and question and anthropic_api_key:
     article = uploaded_file.read().decode()
